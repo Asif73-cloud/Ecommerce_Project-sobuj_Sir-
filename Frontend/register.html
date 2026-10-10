@@ -1,0 +1,236 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Account | Kenova</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+  <main class="register-wrap">
+    
+    <div class="register-header">
+      <div class="logo-badge"><i class="fa-solid fa-envelope"></i></div>
+      <h1>Create Account</h1>
+      <p>Join us and start shopping today</p>
+    </div>
+
+    <div class="register-card">
+      
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" aria-selected="true" data-tab="email">
+          <i class="fa-solid fa-envelope"></i> Email
+        </button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="mobile">
+          <i class="fa-solid fa-mobile-screen"></i> Mobile
+        </button>
+      </div>
+
+      <!-- ================= EMAIL TAB (Direct Registration) ================= -->
+      <form id="emailForm" class="tab-content active" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="emailFirstName">First Name</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="emailFirstName" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="emailLastName">Last Name</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="emailLastName" placeholder="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="emailAddress">Email Address</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="emailAddress" placeholder="">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="emailPhone">Phone Number</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="emailPhone" placeholder="088+">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="emailPassword">Password</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="emailPassword" placeholder="Create password">
+              <button type="button" class="toggle-pw" data-target="emailPassword" aria-label="Show password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="emailConfirmPassword">Confirm Password</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="emailConfirmPassword" placeholder="Confirm password">
+              <button type="button" class="toggle-pw" data-target="emailConfirmPassword" aria-label="Show password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="emailTerms">
+          <span class="checkmark"></span>
+          <span class="checkbox-text">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </span>
+        </label>
+
+        <button type="submit" class="btn-primary" id="emailCreateBtn">
+          Create Account
+        </button>
+
+        <div class="divider">
+          <span>Or continue with</span>
+        </div>
+
+        <button type="button" class="btn-google">
+          <i class="fa-brands fa-google"></i>
+          Sign up with Google
+        </button>
+
+        <p class="login-link">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+
+      </form>
+
+      <!-- ================= MOBILE TAB (OTP Flow) ================= -->
+      <form id="mobileForm" class="tab-content" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mobileFirstName">First Name</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="mobileFirstName" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mobileLastName">Last Name</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="mobileLastName" placeholder="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mobileNumber">Phone Number</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <input type="tel" id="mobileNumber" placeholder="088+">
+          </div>
+        </div>
+
+        <!-- OTP Section (hidden until Send OTP clicked) -->
+        <div class="otp-section" id="otpSectionMobile">
+          <div class="otp-header">
+            <p>OTP sent to <strong id="otpTargetMobile">your phone</strong></p>
+            <span class="otp-timer" id="otpTimerMobile">60s</span>
+          </div>
+          <div class="otp-input-row">
+            <div class="input-wrap">
+              <i class="fa-solid fa-key"></i>
+              <input type="text" id="otpInputMobile" placeholder="000000" maxlength="6" inputmode="numeric">
+            </div>
+            <button type="button" class="btn-verify" id="verifyOtpMobile">Verify</button>
+          </div>
+          <div class="otp-actions">
+            <button type="button" id="resendOtpMobile" disabled>Resend OTP</button>
+            <button type="button" id="changeMobile">Change Number</button>
+          </div>
+          <div class="otp-success" id="otpSuccessMobile">
+            <i class="fa-solid fa-circle-check"></i> Mobile verified successfully!
+          </div>
+        </div>
+
+        <!-- Send OTP Button -->
+        <button type="button" class="btn-primary" id="sendOtpMobileBtn">
+          Send OTP
+        </button>
+
+        <!-- Password Section (hidden until OTP verified) -->
+        <div id="mobilePasswordSection" style="display: none;">
+          <div class="form-row" style="margin-top: 8px;">
+            <div class="form-group">
+              <label for="mobilePassword">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="mobilePassword" placeholder="Create password">
+                <button type="button" class="toggle-pw" data-target="mobilePassword" aria-label="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mobileConfirmPassword">Confirm Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="mobileConfirmPassword" placeholder="Confirm password">
+                <button type="button" class="toggle-pw" data-target="mobileConfirmPassword" aria-label="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="mobileTerms">
+            <span class="checkmark"></span>
+            <span class="checkbox-text">
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </span>
+          </label>
+
+          <button type="submit" class="btn-primary" id="mobileCreateBtn">
+            Create Account
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>Or continue with</span>
+        </div>
+
+        <button type="button" class="btn-google">
+          <i class="fa-brands fa-google"></i>
+          Sign up with Google
+        </button>
+
+        <p class="login-link">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <script src="register.js"></script>
+</body>
+
+</html>

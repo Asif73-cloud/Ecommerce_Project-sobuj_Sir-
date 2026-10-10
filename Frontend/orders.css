@@ -1,0 +1,333 @@
+/* ==========================================================================
+   Kenova - orders.css
+   Extends wishlist.css design tokens.
+   ========================================================================== */
+
+/* ---------- TABS ---------- */
+.order-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab-btn {
+  padding: 9px 18px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #4b5563;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tab-btn:hover {
+  border-color: #c2185b;
+  color: #c2185b;
+  background: #fce4ec;
+}
+
+.tab-btn.active {
+  background: #c2185b;
+  color: #fff;
+  border-color: #c2185b;
+}
+
+/* ---------- ORDERS LIST ---------- */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 300px;
+}
+
+/* ---------- ORDER CARD ---------- */
+.order-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.order-card:hover {
+  box-shadow: 0 10px 30px rgba(194, 24, 91, 0.10);
+  border-color: #fce4ec;
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #fce4ec 0%, #fff 100%);
+  border-bottom: 1px solid #f5f5f5;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.order-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-number {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.order-date {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.order-status-badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.status-pending    { background: #fef3c7; color: #92400e; }
+.status-processing { background: #dbeafe; color: #1e40af; }
+.status-shipped    { background: #e0e7ff; color: #3730a3; }
+.status-delivered  { background: #dcfce7; color: #166534; }
+.status-cancelled  { background: #fee2e2; color: #991b1b; }
+.status-returned   { background: #f3e8ff; color: #6b21a8; }
+
+.order-card-body {
+  padding: 18px 20px;
+}
+
+.order-items-preview {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.order-item-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fce4ec;
+  display: grid;
+  place-items: center;
+  color: #c2185b;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.order-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.order-item-more {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.order-item-names {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.order-item-names strong {
+  color: #1a1a2e;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px dashed #e5e7eb;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.order-total {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.order-total-label {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.order-total-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #c2185b;
+}
+
+.order-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-view-details,
+.btn-cancel-order {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  border: none;
+}
+
+.btn-view-details {
+  background: #c2185b;
+  color: #fff;
+}
+
+.btn-view-details:hover {
+  background: #a0134a;
+  transform: translateY(-1px);
+}
+
+.btn-cancel-order {
+  background: #fff;
+  color: #dc2626;
+  border: 1.5px solid #fecaca;
+}
+
+.btn-cancel-order:hover {
+  background: #fee2e2;
+}
+
+/* ---------- EXPANDED DETAILS ---------- */
+.order-details-panel {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fafbfc;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  display: none;
+}
+
+.order-details-panel.open {
+  display: block;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.details-section h4 {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.details-section p {
+  font-size: 0.88rem;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+
+.details-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 14px;
+}
+
+.details-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.88rem;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.details-item-row:last-child {
+  border-bottom: none;
+}
+
+.details-item-name {
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.details-item-qty {
+  color: #6b7280;
+  font-size: 0.82rem;
+}
+
+.details-item-price {
+  color: #c2185b;
+  font-weight: 700;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  .order-card-header { padding: 14px 16px; }
+  .order-number { font-size: 0.92rem; }
+  .order-total-value { font-size: 1.05rem; }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .order-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 14px;
+    scrollbar-width: none;
+  }
+
+  .order-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; }
+
+  .btn-view-details,
+  .btn-cancel-order {
+    flex: 1;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,369 @@
+ /* ==========================================================================
+   Kenova - Auth pages (Login / Register / Forgot Password)
+   Colors match home.css
+   ========================================================================== */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  --pink: #c2185b;
+  --pink-dark: #a0134a;
+  --pink-soft: #fce4ec;
+
+  --ink: #1a1a2e;
+  --ink-soft: #4b5563;
+  --gray: #6b7280;
+  --gray-light: #9ca3af;
+  --border: #e5e7eb;
+  --light-gray: #f5f5f5;
+  --white: #ffffff;
+
+  --ok: #16a34a;
+  --danger: #dc2626;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.10);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --transition: 0.25s ease;
+
+  --font: "Inter", "Segoe UI", "Noto Sans Bengali", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- 2. RESET & BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--light-gray);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font: inherit;
+  outline: none;
+}
+
+/* ---------- 3. UTILITY ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 4. PAGE BACKGROUND ---------- */
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(194, 24, 91, 0.06), transparent 60%),
+    radial-gradient(1000px 500px at 100% 100%, rgba(194, 24, 91, 0.05), transparent 60%),
+    var(--light-gray);
+}
+
+/* ---------- 5. CARD ---------- */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px 26px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- 6. LOGO ---------- */
+.auth-card .logo {
+  display: block;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--pink);
+  margin-bottom: 4px;
+  transition: color var(--transition);
+}
+
+.auth-card .logo:hover {
+  color: var(--pink-dark);
+}
+
+/* ---------- 7. HEADING ---------- */
+.auth-card h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+/* ---------- 8. INPUT WITH ICON ---------- */
+.input-wrap {
+  position: relative;      /* ⬅️ এটাই eye icon কে ভিতরে রাখে */
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-wrap .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--gray);
+  pointer-events: none;
+  transition: color var(--transition);
+  z-index: 2;
+}
+
+.input-wrap:focus-within .input-icon {
+  color: var(--pink);
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 12px 46px 12px 42px;   /* left room for icon, right room for eye */
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--white);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input-wrap input::placeholder {
+  color: var(--gray-light);
+}
+
+.input-wrap input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.12);
+}
+
+/* Eye toggle (show / hide password) */
+.toggle-pass {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--gray);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+  z-index: 2;
+}
+
+.toggle-pass:hover {
+  color: var(--pink);
+  background: var(--pink-soft);
+}
+
+.toggle-pass:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+/* ---------- 9. ROW: REMEMBER + FORGOT ---------- */
+.row_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 2px 0 8px;
+}
+
+.row_between .check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.row_between .check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--pink);
+  cursor: pointer;
+}
+
+.row_between .check:hover {
+  color: var(--ink);
+}
+
+.forgot {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--pink);
+  position: relative;
+  transition: color var(--transition);
+}
+
+.forgot::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--pink-dark);
+  transition: width var(--transition);
+}
+
+.forgot:hover {
+  color: var(--pink-dark);
+}
+
+.forgot:hover::after {
+  width: 100%;
+}
+
+/* ---------- 10. SUBMIT BUTTON ---------- */
+.auth-card .btn {
+  width: 100%;
+  padding: 12px 18px;
+  background: var(--pink);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  margin-top: 4px;
+}
+
+.auth-card .btn:hover {
+  background: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+.auth-card .btn:active {
+  transform: translateY(0);
+}
+
+.auth-card .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- 11. MESSAGES ---------- */
+.form_error,
+.form_success {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form_error {
+  background: #fff1f1;
+  color: var(--danger);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-left: 4px solid var(--danger);
+}
+
+.form_success {
+  background: #eefbf3;
+  color: var(--ok);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+  border-left: 4px solid var(--ok);
+}
+
+.form_error[hidden],
+.form_success[hidden] {
+  display: none;
+}
+
+/* ---------- 12. ALT LINK ---------- */
+.auth_alt {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+.auth_alt a {
+  color: var(--pink);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.auth_alt a:hover {
+  color: var(--pink-dark);
+  text-decoration: underline;
+}
+
+/* ---------- 13. RESPONSIVE ---------- */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px 20px 20px;
+    border-radius: 12px;
+  }
+
+  .auth-card h1 {
+    font-size: 20px;
+  }
+
+  .row_between {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .row_between .check,
+  .forgot {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- 14. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

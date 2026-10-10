@@ -1,0 +1,224 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Kenova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="cart-sidebar.css">
+</head>
+
+<body>
+
+    <nav class="topbar">
+        <a href="home.html" class="brand">Kenova</a>
+        <div class="topbar_links">
+            <a href="profile.html">Account</a>
+        </div>
+    </nav>
+
+    <main class="wrap checkout_wrap">
+
+        <!-- Progress -->
+        <ol class="steps" aria-label="Checkout progress">
+            <li class="complete"><span><i class="fa-solid fa-check"></i></span> Cart</li>
+            <li class="active"><span>2</span> Checkout</li>
+            <li><span>3</span> Confirmation</li>
+        </ol>
+
+        <!-- FORM VIEW -->
+        <div class="checkout_layout" id="checkoutView">
+            <section class="checkout_form">
+
+                <form id="checkoutForm" novalidate>
+
+                    <!-- Contact -->
+                    <fieldset class="block">
+                        <h2>Contact information</h2>
+                        <div class="grid2">
+                            <div class="field">
+                                <label for="ccEmail">Email address</label>
+                                <input type="email" id="ccEmail" autocomplete="email" placeholder="you@example.com">
+                                <small class="error"></small>
+                            </div>
+                            <div class="field">
+                                <label for="ccPhone">Phone number</label>
+                                <input type="tel" id="ccPhone" autocomplete="tel" placeholder="01XXXXXXXXX">
+                                <small class="error"></small>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Shipping address -->
+                    <fieldset class="block">
+                        <h2>Shipping address</h2>
+                        <div class="grid2">
+                            <div class="field">
+                                <label for="sFullName">Full name</label>
+                                <input type="text" id="sFullName" autocomplete="name"
+                                    placeholder="Recipient's full name">
+                                <small class="error"></small>
+                            </div>
+                            <div class="field">
+                                <label for="sCity">City / District</label>
+                                <input type="text" id="sCity" placeholder="e.g. Khulna">
+                                <small class="error"></small>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="sAddress">Full address</label>
+                            <textarea id="sAddress" rows="2" placeholder="House, road, area"></textarea>
+                            <small class="error"></small>
+                        </div>
+                        <div class="grid2">
+                            <div class="field">
+                                <label for="sPostcode">Postal code <span class="opt">(optional)</span></label>
+                                <input type="text" id="sPostcode" placeholder="e.g. 9000">
+                            </div>
+                            <div class="field">
+                                <label for="sNote">Delivery note <span class="opt">(optional)</span></label>
+                                <input type="text" id="sNote" placeholder="e.g. Call before delivery">
+                            </div>
+                        </div>
+                        <label class="check">
+                            <input type="checkbox" id="saveAddress" checked>
+                            <span>Save this address for next time</span>
+                        </label>
+                    </fieldset>
+
+                    <!-- Payment method -->
+                    <fieldset class="block">
+                        <h2>Payment method</h2>
+
+                        <div class="pay_options" id="payOptions">
+                            <label class="pay_option active">
+                                <input type="radio" name="payMethod" value="cod" checked>
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <div><strong>Cash on Delivery</strong><small>Pay when your order arrives</small></div>
+                            </label>
+                            <label class="pay_option">
+                                <input type="radio" name="payMethod" value="card">
+                                <i class="fa-regular fa-credit-card"></i>
+                                <div><strong>Card</strong><small>Visa, Mastercard</small></div>
+                            </label>
+                            <label class="pay_option">
+                                <input type="radio" name="payMethod" value="mobile">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <div><strong>Mobile Banking</strong><small>bKash, Nagad, Rocket</small></div>
+                            </label>
+                        </div>
+
+                        <!-- Card sub-fields -->
+                        <div class="pay_detail" id="cardFields" hidden>
+                            <div class="field">
+                                <label for="cardName">Name on card</label>
+                                <input type="text" id="cardName" placeholder="As shown on card">
+                                <small class="error"></small>
+                            </div>
+                            <div class="field">
+                                <label for="cardNumber">Card number</label>
+                                <input type="text" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456"
+                                    maxlength="19">
+                                <small class="error"></small>
+                            </div>
+                            <div class="grid2">
+                                <div class="field">
+                                    <label for="cardExpiry">Expiry (MM/YY)</label>
+                                    <input type="text" id="cardExpiry" inputmode="numeric" placeholder="MM/YY"
+                                        maxlength="5">
+                                    <small class="error"></small>
+                                </div>
+                                <div class="field">
+                                    <label for="cardCvc">CVC</label>
+                                    <input type="text" id="cardCvc" inputmode="numeric" placeholder="123" maxlength="4">
+                                    <small class="error"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile banking sub-fields -->
+                        <div class="pay_detail" id="mobileFields" hidden>
+                            <div class="grid2">
+                                <div class="field">
+                                    <label for="mobileProvider">Provider</label>
+                                    <select id="mobileProvider">
+                                        <option>bKash</option>
+                                        <option>Nagad</option>
+                                        <option>Rocket</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="mobileNumber">Account number</label>
+                                    <input type="tel" id="mobileNumber" placeholder="01XXXXXXXXX">
+                                    <small class="error"></small>
+                                </div>
+                            </div>
+                            <p class="hint">You'll get a payment confirmation prompt on this number after placing the
+                                order.</p>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn_wide" id="placeOrderBtn">Place Order</button>
+                </form>
+            </section>
+
+            <!-- ORDER SUMMARY -->
+            <aside class="checkout_summary">
+                <h2>Order Summary</h2>
+                <div id="checkoutItems"></div>
+
+                <div class="sum_line"><span>Subtotal</span><span id="sumSubtotal">৳0</span></div>
+                <div class="sum_line" id="discountLine" hidden><span>Discount</span><span id="sumDiscount">−৳0</span>
+                </div>
+                <div class="sum_line"><span>Shipping</span><span id="sumShipping">৳0</span></div>
+                <div class="sum_line total"><span>Total</span><span id="sumTotal">৳0</span></div>
+
+                <ul class="assurance">
+                    <li><i class="fa-solid fa-truck"></i> Shipping within 7 days</li>
+                    <li><i class="fa-regular fa-credit-card"></i> Safe payment</li>
+                    <li><i class="fa-brands fa-rocketchat"></i> Support 24/7</li>
+                </ul>
+            </aside>
+        </div>
+
+        <!-- EMPTY CART VIEW -->
+        <div class="empty_checkout" id="emptyView" hidden>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h2>Your cart is empty</h2>
+            <p>Add something to your cart before checking out.</p>
+            <a href="home.html" class="btn">Start Shopping</a>
+        </div>
+
+        <!-- CONFIRMATION VIEW -->
+        <div class="confirm_view" id="confirmView" hidden>
+            <i class="fa-solid fa-circle-check confirm_icon"></i>
+            <h2>Order placed!</h2>
+            <p>Thanks for shopping with Kenova. A confirmation has been sent to your email.</p>
+            <div class="confirm_box">
+                <div><span>Order number</span><strong id="orderNumber">—</strong></div>
+                <div><span>Total paid</span><strong id="orderTotal">—</strong></div>
+                <div><span>Estimated delivery</span><strong id="orderEta">—</strong></div>
+            </div>
+            <div class="confirm_actions">
+                <a href="home.html" class="btn">Continue Shopping</a>
+                <a href="profile.html#orders" class="btn btn_outline">View My Orders</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; Copyright 2026 Kenova. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts — ORDER MATTERS -->
+    <script src="api.js"></script>
+    <script src="cart-sidebar.js"></script>
+    <script src="checkout.js"></script>
+
+</body>
+
+</html>

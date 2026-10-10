@@ -1,0 +1,313 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenova Shop - Online Store</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="cart-sidebar.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="shopz-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+
+        <!-- Logo -->
+        <a href="home.html" class="logo">
+          <img src="images/kanovalogo.png" alt="Kenova Shop">
+        </a>
+
+        <!-- Search -->
+        <div class="search-wrapper">
+          <form class="search" id="searchForm" autocomplete="off">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Search products..."
+                   autocomplete="off"
+                   spellcheck="false">
+            <button type="button"
+                    class="search-clear"
+                    id="searchClear"
+                    hidden
+                    aria-label="Clear search">
+              <i class="fas fa-times"></i>
+            </button>
+            <button type="submit"
+                    class="search-submit"
+                    aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+
+          <!-- Search suggestions dropdown -->
+          <div class="search-suggestions" id="searchSuggestions" hidden role="listbox">
+            <div class="suggestions-section" id="productSection" hidden>
+              <ul class="suggestions-list" id="productList"></ul>
+            </div>
+            <div class="suggestions-section no-results" id="noResults" hidden>
+              <i class="fas fa-search"></i>
+              <p>No results for "<strong id="noResultsTerm"></strong>"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+
+          <!-- Category Dropdown -->
+          <div class="category-dropdown" id="categoryDropdown">
+            <button type="button" class="category-btn" id="categoryBtn">
+              <i class="fa-solid fa-bars"></i>
+              <span>Categories</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="category-menu" id="categoryMenu">
+              <a href="#" data-category="all">
+                <i class="fa-solid fa-th-large"></i> All Products
+              </a>
+              <a href="#" data-category="mens-fashion">
+                <i class="fa-solid fa-shirt"></i> Men's Fashion
+              </a>
+              <a href="#" data-category="womens-fashion">
+                <i class="fa-solid fa-person-dress"></i> Women's Fashion
+              </a>
+              <a href="#" data-category="electronics">
+                <i class="fa-solid fa-laptop"></i> Electronics
+              </a>
+              <a href="#" data-category="sports-outdoors">
+                <i class="fa-solid fa-futbol"></i> Sports & Outdoors
+              </a>
+              <a href="#" data-category="home-lifestyle">
+                <i class="fa-solid fa-couch"></i> Home & Lifestyle
+              </a>
+              <a href="#" data-category="accessories">
+                <i class="fa-solid fa-watch"></i> Accessories
+              </a>
+            </div>
+          </div>
+
+          <!-- Wishlist -->
+          <a href="wishlist.html" class="header-icon" aria-label="Wishlist">
+            <i class="fas fa-heart"></i>
+            <span class="header-badge" id="wishlistCount">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="#" class="header-icon" id="cartIcon" aria-label="Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="header-badge cart-count" id="cartCount">0</span>
+          </a>
+
+          <!-- User menu -->
+          <div class="user">
+            <button class="user-btn" aria-label="Account">
+              <span class="avatar"><i class="far fa-user"></i></span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu">
+              <a href="profile.html"><i class="far fa-user"></i> Profile</a>
+              <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+              <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="shop-main">
+    <div class="container">
+
+      <!-- Page heading -->
+      <div class="filter-bar">
+        <div>
+          <h1 class="page-heading" id="pageHeading">All Products</h1>
+          <p class="results-count" id="resultsCount">Loading...</p>
+        </div>
+        <div class="filter-right">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shop-layout">
+
+        <!-- ===== FILTER SIDEBAR ===== -->
+        <aside class="filter-sidebar" id="filterSidebar">
+          <div class="filter-header">
+            <h3><i class="fas fa-filter"></i> Filters</h3>
+            <button class="close-filter" id="closeFilter" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Brand filter -->
+          <div class="filter-section">
+            <h4 class="filter-title">Brand</h4>
+            <input type="text"
+                   class="filter-search"
+                   id="brandSearch"
+                   placeholder="Search brands...">
+            <div class="brand-filter" id="brandFilter">
+              <p style="color:#9ca3af;font-size:0.85rem;padding:8px 0;">No brands</p>
+            </div>
+          </div>
+
+          <!-- Price filter -->
+          <div class="filter-section">
+            <h4 class="filter-title">Price Range</h4>
+            <div class="price-filter">
+              <label><input type="radio" name="price" value="0-1000"> Under ৳1,000</label>
+              <label><input type="radio" name="price" value="1000-2500"> ৳1,000 - ৳2,500</label>
+              <label><input type="radio" name="price" value="2500-5000"> ৳2,500 - ৳5,000</label>
+              <label><input type="radio" name="price" value="5000-10000"> ৳5,000 - ৳10,000</label>
+              <label><input type="radio" name="price" value="10000-999999"> ৳10,000 & above</label>
+            </div>
+          </div>
+
+          <!-- Rating filter -->
+          <div class="filter-section">
+            <h4 class="filter-title">Customer Rating</h4>
+            <div class="rating-filter">
+              <label><input type="radio" name="rating" value="0" checked> All Ratings</label>
+              <label><input type="radio" name="rating" value="4"> <span class="stars">★★★★</span> 4★ & up</label>
+              <label><input type="radio" name="rating" value="3"> <span class="stars">★★★</span> 3★ & up</label>
+            </div>
+          </div>
+
+          <button class="btn-reset" id="resetFilters">
+            <i class="fas fa-undo"></i> Reset Filters
+          </button>
+        </aside>
+
+        <!-- ===== PRODUCTS ===== -->
+        <section class="products-area" id="productsArea">
+
+          <!-- Active filters chips -->
+          <div class="active-filters" id="activeFilters"></div>
+
+          <!-- Products grid -->
+          <div class="products-grid" id="productsGrid">
+            <!-- Loading skeleton -->
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-text"></div>
+              <div class="skeleton-text short"></div>
+              <div class="skeleton-text button"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-text"></div>
+              <div class="skeleton-text short"></div>
+              <div class="skeleton-text button"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-text"></div>
+              <div class="skeleton-text short"></div>
+              <div class="skeleton-text button"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-text"></div>
+              <div class="skeleton-text short"></div>
+              <div class="skeleton-text button"></div>
+            </div>
+          </div>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="emptyState" hidden>
+            <i class="fas fa-box-open"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or search terms</p>
+            <button class="btn-clear-empty" id="clearEmpty">
+              <i class="fas fa-undo"></i> Clear Filters
+            </button>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination" id="pagination"></div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>Kenova Shop</h4>
+          <p>Your trusted online shop for quality products at the best prices.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="home.html">All Products</a>
+          <a href="mensaccessories.html">Men's Accessories</a>
+          <a href="messengerbags.html">Messenger Bags</a>
+          <a href="crossbodybags.html">Crossbody Bags</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="profile.html">My Profile</a>
+          <a href="orders.html">My Orders</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="#" id="footerCartLink">My Cart</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="help.html">Help Center</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Kenova Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Overlay for mobile filter -->
+  <div class="filter-overlay" id="filterOverlay"></div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="api.js"></script>
+  <script src="cart-sidebar.js"></script>
+  <script src="search.js"></script>
+  <script src="home.js"></script>
+  <script src="mega-menu.js"></script>
+</body>
+</html>

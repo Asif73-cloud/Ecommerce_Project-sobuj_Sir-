@@ -1,0 +1,364 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - Kenova Shop</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="wishlist.css">
+  <link rel="stylesheet" href="cart-sidebar.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="shopz-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+
+        <a href="home.html" class="logo">
+          <img src="images/kanovalogo.png" alt="Kenova Shop">
+        </a>
+
+        <div class="search-wrapper">
+          <div class="search">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button class="search-submit" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a href="wishlist.html" class="header-icon">
+            <i class="fas fa-heart"></i>
+            <span class="header-badge" id="wishlistCount">0</span>
+          </a>
+
+          <a href="#" class="header-icon" id="cartIcon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="header-badge cart-count" id="cartCount">0</span>
+          </a>
+
+          <div class="user">
+            <button class="user-btn">
+              <span class="avatar"><i class="far fa-user"></i></span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu">
+              <a href="profile.html"><i class="far fa-user"></i> Profile</a>
+              <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+              <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="shop-main">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="home.html">Home</a>
+        <span>/</span>
+        <span>My Profile</span>
+      </div>
+
+      <!-- ===== PROFILE HERO CARD ===== -->
+      <section class="profile-hero">
+        <div class="profile-hero-left">
+          <div class="avatar-wrap">
+            <img id="heroAvatarImg"
+                 src="https://ui-avatars.com/api/?name=U&background=c2185b&color=fff&size=200"
+                 alt="Avatar">
+            <button class="avatar-edit" type="button" aria-label="Change avatar">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+
+          <div class="profile-hero-info">
+            <h1 id="heroName">User</h1>
+            <p class="profile-hero-email">
+              <i class="fas fa-envelope"></i>
+              <span id="heroEmail">user@example.com</span>
+            </p>
+            <div class="profile-hero-badges">
+              <span class="badge badge-gold">
+                <i class="fas fa-crown"></i> Gold Member
+              </span>
+              <span class="badge badge-info">
+                <i class="fas fa-calendar"></i> Joined Jan 2024
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-hero-stats">
+          <div class="stat-box">
+            <span class="stat-value" id="statOrders">0</span>
+            <span class="stat-label">ORDERS</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value" id="statWishlist">0</span>
+            <span class="stat-label">WISHLIST</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value" id="statPoints">0</span>
+            <span class="stat-label">POINTS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROFILE LAYOUT ===== -->
+      <div class="profile-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="profile-sidebar">
+          <nav class="side-nav">
+            <a href="#" class="side-tab active" data-tab="info">
+              <i class="fas fa-user"></i> Personal Info
+            </a>
+            <a href="#" class="side-tab" data-tab="orders">
+              <i class="fas fa-box"></i> My Orders
+            </a>
+            <a href="#" class="side-tab" data-tab="addresses">
+              <i class="fas fa-map-marker-alt"></i> Addresses
+            </a>
+            <a href="#" class="side-tab" data-tab="security">
+              <i class="fas fa-lock"></i> Security
+            </a>
+            <a href="#" id="sideLogoutBtn" class="side-tab logout">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <div class="profile-content">
+
+          <!-- ===== PERSONAL INFO PANEL ===== -->
+          <div class="panel active" id="panel-info">
+            <h2>Personal Information</h2>
+            <p class="panel-subtitle">Update your name, email and contact details.</p>
+
+            <form id="infoForm" class="profile-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="First name">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Last name">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Phone">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="dob">Date of Birth</label>
+                  <input type="date" id="dob" name="dob">
+                </div>
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select id="gender" name="gender">
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself"></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                  <i class="fas fa-check"></i> Save Changes
+                </button>
+                <button type="button" class="btn-secondary" onclick="document.getElementById('infoForm').reset()">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ===== MY ORDERS PANEL ===== -->
+          <div class="panel" id="panel-orders">
+            <h2>My Orders</h2>
+            <p class="panel-subtitle">View and track your recent orders.</p>
+
+            <div class="order-tabs">
+              <button class="tab-btn active" data-status="">All</button>
+              <button class="tab-btn" data-status="processing">Processing</button>
+              <button class="tab-btn" data-status="shipped">Shipped</button>
+              <button class="tab-btn" data-status="delivered">Delivered</button>
+              <button class="tab-btn" data-status="cancelled">Cancelled</button>
+            </div>
+
+            <!-- ORDERS RENDER HERE -->
+            <div id="ordersListContainer"></div>
+          </div>
+
+          <!-- ===== ADDRESSES PANEL ===== -->
+          <div class="panel" id="panel-addresses">
+            <h2>Addresses</h2>
+            <p class="panel-subtitle">Manage your shipping addresses.</p>
+
+            <div id="addressList" class="address-list"></div>
+
+            <form id="addressForm" class="profile-form" style="margin-top:24px;">
+              <h3 style="font-size:16px; font-weight:700; margin:0 0 14px;">Add New Address</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="addrFullName">Full Name</label>
+                  <input type="text" id="addrFullName" name="full_name" required>
+                </div>
+                <div class="form-group">
+                  <label for="addrPhone">Phone</label>
+                  <input type="tel" id="addrPhone" name="phone" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="addrLine">Address Line</label>
+                <input type="text" id="addrLine" name="address_line" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="addrCity">City</label>
+                  <input type="text" id="addrCity" name="city" required>
+                </div>
+                <div class="form-group">
+                  <label for="addrPostal">Postal Code</label>
+                  <input type="text" id="addrPostal" name="postal_code">
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                  <i class="fas fa-plus"></i> Add Address
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ===== SECURITY PANEL ===== -->
+          <div class="panel" id="panel-security">
+            <h2>Security</h2>
+            <p class="panel-subtitle">Change your password and manage account security.</p>
+
+            <form id="securityForm" class="profile-form">
+              <div class="form-group">
+                <label for="currentPw">Current Password</label>
+                <input type="password" id="currentPw" name="currentPw" required>
+              </div>
+              <div class="form-group">
+                <label for="newPw">New Password</label>
+                <input type="password" id="newPw" name="newPw" required minlength="6">
+              </div>
+              <div class="form-group">
+                <label for="confirmPw">Confirm New Password</label>
+                <input type="password" id="confirmPw" name="confirmPw" required minlength="6">
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                  <i class="fas fa-lock"></i> Update Password
+                </button>
+              </div>
+            </form>
+
+            <div class="danger-zone">
+              <h3>Danger Zone</h3>
+              <p>Once you delete your account, there is no going back.</p>
+              <button type="button" id="deleteAccountBtn" class="btn-danger">
+                <i class="fas fa-trash"></i> Delete Account
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>Kenova Shop</h4>
+          <p>Your trusted online shop for quality products at the best prices.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="home.html">All Products</a>
+          <a href="mensaccessories.html">Men's Accessories</a>
+          <a href="messengerbags.html">Messenger Bags</a>
+          <a href="crossbodybags.html">Crossbody Bags</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="profile.html">My Profile</a>
+          <a href="orders.html">My Orders</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="#" id="footerCartLink">My Cart</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Kenova Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Scripts -->
+  <script src="api.js"></script>
+  <script src="cart-sidebar.js"></script>
+  <script src="profile.js"></script>
+</body>
+</html>
